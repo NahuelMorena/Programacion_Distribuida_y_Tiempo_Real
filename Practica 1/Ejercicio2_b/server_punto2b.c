@@ -6,6 +6,9 @@
 #include <netinet/in.h>
 #include <stdlib.h>
 
+//Libreria para utilizar la función memset()
+#include <string.h>
+
 //Espacio que se reservara para el buffer 
 #define BUFFER_SIZE 1000
 

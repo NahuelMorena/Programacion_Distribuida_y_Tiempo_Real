@@ -4,6 +4,12 @@
 #include <netinet/in.h>
 #include <netdb.h> 
 
+//Libreria para utilizar la función memset()
+#include <string.h>
+
+//Espacio que se reservara para el buffer
+#define BUFFER_SIZE 1000
+
 void error(char *msg)
 {
     perror(msg);
@@ -16,7 +22,7 @@ int main(int argc, char *argv[])
     struct sockaddr_in serv_addr;
     struct hostent *server;
 
-    char buffer[256];
+    char buffer[BUFFER_SIZE];
     if (argc < 3) {
        fprintf(stderr,"usage %s hostname port\n", argv[0]);
        exit(0);
@@ -50,17 +56,18 @@ int main(int argc, char *argv[])
 	//DESCRIPTOR - DIRECCION - TAMAÑO DIRECCION
     if (connect(sockfd,&serv_addr,sizeof(serv_addr)) < 0) 
         error("ERROR connecting");
-    printf("Please enter the message: ");
-    bzero(buffer,256);
-    fgets(buffer,255,stdin);
+
+    //Se completa el campo de memoria que referencia la variable buffer con el caracter 'x'
+    memset(buffer,'x',BUFFER_SIZE);
+
     //ENVIA UN MENSAJE AL SOCKET
 	n = write(sockfd,buffer,strlen(buffer));
     if (n < 0) 
          error("ERROR writing to socket");
-    bzero(buffer,256);
+    bzero(buffer,BUFFER_SIZE);
 	
     //ESPERA RECIBIR UNA RESPUESTA
-	n = read(sockfd,buffer,255);
+	n = read(sockfd,buffer,BUFFER_SIZE);
     if (n < 0) 
          error("ERROR reading from socket");
     

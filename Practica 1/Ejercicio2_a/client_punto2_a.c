@@ -3,6 +3,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <netdb.h> 
+#include <stdlib.h>
 
 //Libreria para utilizar la función memset()
 #include <string.h>

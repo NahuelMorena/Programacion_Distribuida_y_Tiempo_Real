@@ -4,6 +4,10 @@
 #include <sys/types.h> 
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <stdlib.h>
+
+//Libreria para utilizar la función memset()
+#include <string.h>
 
 //Espacio que se reservara para el buffer 
 #define BUFFER_SIZE 1000
@@ -66,7 +70,7 @@ int main(int argc, char *argv[])
      if (n < 0) 
           error("ERROR reading from socket");
      
-     printf("El mensaje es de %i bytes\n",strlen(buffer));
+     printf("El mensaje es de %li bytes\n",strlen(buffer));
 	 
 	 //RESPONDE AL CLIENTE
      n = write(newsockfd,"I got your message",18);

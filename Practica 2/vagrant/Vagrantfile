@@ -1,0 +1,21 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  2.times do |i|
+    config.vm.define "vm#{i+1}" do |machine|
+      machine.vm.box = "ubuntu/xenial64"
+      machine.vm.network "public_network", ip: "192.168.0.20#{i+1}"
+      machine.vm.hostname = "vagrant#{i+1}"
+      
+      machine.vm.provider "virtualbox" do |vb|
+        vb.memory = "1024"
+      end
+
+      machine.vm.provision "shell", inline: <<-SHELL
+        apt-get update
+        apt-get install -y net-tools debconf-utils joe zip libc-dev-bin build-essential
+      SHELL
+    end
+  end
+end

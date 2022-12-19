@@ -1,0 +1,33 @@
+syntax = "proto3";
+package pdytr.example.grpc;
+
+message ReadRequest{
+	string filename = 1;
+	int32 position = 2;
+	int32 size = 3;
+}
+
+message ReadResponse{
+	bytes data = 1;
+	int32 read_size = 2;
+}
+
+message WriteRequest {
+	string filename = 1;
+	int32 data_size = 2;
+	bytes buffer = 3;
+}
+
+message WriteResponse{
+	int64 bytes_written = 1;
+}
+
+
+service FileTransferService {
+   rpc read(ReadRequest) returns (ReadResponse);
+   rpc write(WriteRequest) returns (WriteResponse);
+}
+
+
+
+

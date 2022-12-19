@@ -1,0 +1,7 @@
+prac4.pdf	DataServer1
+soy_texto.txt	DataServer2
+otro_text.txt	DataServer2
+sweet.mp3	DataServer1
+soy_nuevo.txt	DataServer2
+PRUEBA23.txt	DataServer1
+DSAGDASIUDSAIUSDUI.txt	DataServer2
